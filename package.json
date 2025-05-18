@@ -1,0 +1,31 @@
+{
+  "name": "packettracer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalincd/PacketTracer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/catalincd/PacketTracer/issues"
+  },
+  "homepage": "https://github.com/catalincd/PacketTracer#readme",
+  "devDependencies": {
+    "electron": "^36.2.1",
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "ethernet": "^1.0.1",
+    "pcap-parser": "^0.2.1",
+    "tcp-packet": "^0.1.1"
+  }
+}
