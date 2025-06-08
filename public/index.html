@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.9/ejs.min.js"></script>
 </head>
+
 <body>
-  
+  <div id="pageContainer">
+    <div id="loadPage">
+      <button id="loadButton" onclick="loadFile()">LOAD FILE</button>
+      <h3 id="loadingText">LOADING...</h3>
+    </div>
+    <div id="contentPage">
+      <div id="topBar">
+        <h3 id="fileTitle">sample.pcap</h3>
+        <div id="tabsContainer">
+          <div id="packetsButton" class="tabButton selected">PACKETS</div>
+          <div id="streamsButton" class="tabButton">STREAMS</div>
+          <div id="devicesButton" class="tabButton">DEVICES</div>
+        </div>
+      </div>
+      <div id="tabContent">
+        <div id="packetsTab" class="tabContainer selected">packetsta</div>
+        <div id="streamsTab" class="tabContainer">streams</div>
+        <div id="devicesTab" class="tabContainer">
+          <div id="devicesTopBar">
+            devicesTopBar
+          </div>
+          <div id="devicesList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/ejs.js"></script>
+  <script src="js/query.js"></script>
+  <script src="js/sample.js"></script>
+  <script src="js/clicks.js"></script>
+
+  <script src="js/builders/devices.js"></script>
+
+  <script src="script.js"></script>
 </body>
+
 </html>

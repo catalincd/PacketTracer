@@ -1,6 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('electronAPI', {
-  requestData: () => ipcRenderer.send('request-data'),
-  onResponseData: (callback) => ipcRenderer.on('response-data', (event, data) => callback(data))
+contextBridge.exposeInMainWorld('API', {
+  readFile: () => ipcRenderer.invoke('os:readFile'),
+  readFilePath: (path) => ipcRenderer.invoke('os:readFile', path),
+  onSendResults: (callback) => ipcRenderer.on('sendResults', (event, data) => callback(data)),
 });

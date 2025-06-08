@@ -1,10 +1,16 @@
 const fs = require('fs');
 const pcapParser = require('pcap-parser');
 const ethernet = require('ethernet');
+const path = require('path');
 const bparser = require('./buffer-parser');
 const tcpPacket = require('tcp-packet');
-const { start } = require('repl');
 
+const LoadTracesFromFile = async (filePath) => {
+    const packets = await pcap.LoadPacketsFromFile(filePath)
+    const parsed = pcap.ParseTCPPackets(packets)
+    const traced = pcap.FilterTracesFromPacketArray(parsed)
+    return traced;
+}
 
 const GetStreamId = (packet) => {
     const firstIP = (packet.srcIP < packet.dstIP ? packet.srcIP : packet.dstIP)
@@ -77,8 +83,48 @@ const LoadPacketsFromFile = async (filePath) => {
     });
 }
 
+const ParseDevicesFromPackets = (packets) => {
+    //TO DO: add ref id's not entire objects
+    var devices = {}
+
+    packets.forEach(packet => {
+        const src = packet.srcIP
+        if(!(Object.hasOwn(devices, src)))
+            devices[src] = []
+
+        devices[src].push(packet)
+
+        const dst = packet.dstIP
+        if(!(Object.hasOwn(devices, dst)))
+            devices[dst] = []
+
+        devices[dst].push(packet)
+    });
+    return devices
+}
+
+const FullParser = async (filePath) => {
+    console.log("FULL PARSER RUNNING")
+    const file  = path.basename(filePath);
+    const packets = await LoadPacketsFromFile(filePath)
+    const parsed = ParseTCPPackets(packets)
+    const devices = ParseDevicesFromPackets(parsed)
+    const traced = FilterTracesFromPacketArray(parsed)
+    console.log("DONE")
+
+    return {
+        file,
+        devices,
+        packets,
+        parsed,
+        traced
+    }
+}
+
 module.exports = {
     LoadPacketsFromFile,
     ParseTCPPackets,
-    FilterTracesFromPacketArray
+    FilterTracesFromPacketArray,
+    LoadTracesFromFile,
+    FullParser
 }
