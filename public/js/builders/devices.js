@@ -14,8 +14,8 @@ const buildDevices = async () => {
 
     $(".deviceItem").on("click", (e) => {
         $(".deviceItem").removeClass("selected")
-        rebuildDeviceStar(e.target.dataset.ip)
-        e.target.classList.add("selected")
+        rebuildDeviceStar(e.currentTarget.dataset.ip)
+        e.currentTarget.classList.add("selected")
     })
 }
 
@@ -41,7 +41,7 @@ const rebuildDeviceStar = async (ip) => {
             style: `top: ${offsetY}%; left: ${offsetX}%`
         })
 
-        const lineOffsetX = 20 + (Math.cos(angle) + 1.0) / 2.0 * 45
+        const lineOffsetX = 22.5 + (Math.cos(angle) + 1.0) / 2.0 * 45
         const lineOffsetY = 35 + (Math.sin(angle) + 1.0) / 2.0 * 45
 
         listHtml += `<div class="deviceStarEndpointLine" style="top: ${lineOffsetY}%; left: ${lineOffsetX}%;transform: rotate(${angle}rad);"></div>`

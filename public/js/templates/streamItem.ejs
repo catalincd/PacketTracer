@@ -1,6 +1,23 @@
 <div class="streamItem" data-tag="<%= tag %>">
-    <p id="ip"><%= srcIP %></p>
-    <p id="ip"><%= sourcePort %></p>
-    <p id="ip"><%= dstIP %></p>
-    <p id="ip"><%= destinationPort %></p>
+    <div class="srcData">
+        <p class="ip">
+            <%= srcIP %>
+        </p>
+        <p class="port">
+            <%= sourcePort %>
+        </p>
+    </div>
+    <div class="separator">
+        <span class="material-symbols-outlined">
+            arrow_right_alt
+        </span>
+    </div>
+    <div class="dstData">
+        <p class="port">
+            <%= destinationPort %>
+        </p>
+        <p class="ip">
+            <%= dstIP %>
+        </p>
+    </div>
 </div>

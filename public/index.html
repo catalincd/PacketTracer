@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=dns,radio_button_checked" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.9/ejs.min.js"></script>
 </head>
 
@@ -21,18 +20,33 @@
       <div id="topBar">
         <h3 id="fileTitle">sample.pcap</h3>
         <div id="tabsContainer">
-          <div id="packetsButton" class="tabButton selected">PACKETS</div>
           <div id="streamsButton" class="tabButton">STREAMS</div>
           <div id="devicesButton" class="tabButton">DEVICES</div>
+          <div id="packetsButton" class="tabButton selected">PACKETS</div>
         </div>
       </div>
       <div id="tabContent">
-        <div id="packetsTab" class="tabContainer selected">packetsta</div>
+        <div id="packetsTab" class="tabContainer selected">
+          <div id="packetsContent">
+            <div id="packetsList"></div>
+            <div id="packetDetails">
+              <div id="packetRaw">raw</div>
+              <div id="packetChar">char</div>
+            </div>
+          </div>
+        </div>
         <div id="streamsTab" class="tabContainer">
           <div id="streamsTopBar">
           </div>
           <div id="streamsContent">
             <div id="streamsList"></div>
+            <div id="streamsTimeline">
+              <div id="streamsTimelineHeader">
+                <p id="srcIpTimeline"></p>
+                <p id="dstIpTimeline"></p>
+              </div>
+              <div id="streamsTimelineContainer"></div>
+            </div>
           </div>
         </div>
         <div id="devicesTab" class="tabContainer">
@@ -62,6 +76,7 @@
 
   <script src="js/builders/devices.js"></script>
   <script src="js/builders/streams.js"></script>
+  <script src="js/builders/packets.js"></script>
 
   <script src="script.js"></script>
 </body>

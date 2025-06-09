@@ -24,6 +24,7 @@ const resultsCallback = (response) => {
 
     buildDevices();
     buildStreams();
+    buildPackets();
 }
 
 
@@ -38,3 +39,4 @@ if(DEBUG)
 {
     preloadDebug()
 }
+

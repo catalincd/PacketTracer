@@ -4,6 +4,44 @@ const ethernet = require('ethernet');
 const path = require('path');
 const bparser = require('./buffer-parser');
 const tcpPacket = require('tcp-packet');
+const { HTTPParser } = require('http-parser-js');
+
+
+const ParseHttpRequest = (rawBuffer) => {
+    const parser = new HTTPParser(HTTPParser.REQUEST);
+    let headers = {};
+    let body = '';
+  
+    parser[HTTPParser.kOnHeadersComplete] = (info) => {
+      headers = {
+        method: HTTPParser.methods[info.method],
+        url: info.url,
+        versionMajor: info.versionMajor,
+        versionMinor: info.versionMinor,
+        headers: Object.fromEntries(
+          (info.headers || []).reduce((acc, val, i) => {
+            if (i % 2 === 0) acc.push([val, info.headers[i + 1]]);
+            return acc;
+          }, [])
+        ),
+      };
+    };
+  
+    parser[HTTPParser.kOnBody] = (chunk, offset, length) => {
+      body += chunk.toString('utf8', offset, offset + length);
+    };
+  
+    parser[HTTPParser.kOnMessageComplete] = () => {
+      // Done
+    };
+  
+    parser.execute(rawBuffer);
+  
+    return {
+      ...headers,
+      body,
+    };
+  }
 
 const LoadTracesFromFile = async (filePath) => {
     const packets = await pcap.LoadPacketsFromFile(filePath)
@@ -29,7 +67,10 @@ const FilterTracesFromPacketArray = (packets) => {
         if(!(Object.hasOwn(streams, id)))
             streams[id] = []
 
-        streams[id].push(packet)
+        streams[id].push({
+            ...packet,
+            http: ParseHttpRequest(packet.data)
+        })
     });
 
     return streams
@@ -44,7 +85,7 @@ const ParseTCPPackets = (packets) => {
             const ip = bparser.ipv4decode(eth.payload);
             if (ip.protocol == 6) {
                 const tcp = tcpPacket.decode(ip.payload);
-                const struct = { ...eth, ...ip, ...tcp }
+                const struct = { ...eth, ...ip, ...tcp, timestamp: packet.timestamp, raw: rawData.toString('hex')}
                 delete struct.payload
                 return struct
             }

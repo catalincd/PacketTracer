@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "ethernet": "^1.0.1",
+    "http-parser-js": "^0.5.10",
     "pcap-parser": "^0.2.1",
     "tcp-packet": "^0.1.1"
   }
