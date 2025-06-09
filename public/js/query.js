@@ -56,6 +56,10 @@ function $(selector) {
     removeClass(className) {
       this.elements.forEach(el => el.classList.remove(className));
       return this;
+    },
+    remove() {
+      this.elements.forEach(el => el.remove());
+      return this;
     }
   };
 }

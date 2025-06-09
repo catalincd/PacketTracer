@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=dns,radio_button_checked" />
   <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.9/ejs.min.js"></script>
 </head>
 
@@ -26,12 +28,28 @@
       </div>
       <div id="tabContent">
         <div id="packetsTab" class="tabContainer selected">packetsta</div>
-        <div id="streamsTab" class="tabContainer">streams</div>
+        <div id="streamsTab" class="tabContainer">
+          <div id="streamsTopBar">
+          </div>
+          <div id="streamsContent">
+            <div id="streamsList"></div>
+          </div>
+        </div>
         <div id="devicesTab" class="tabContainer">
           <div id="devicesTopBar">
-            devicesTopBar
           </div>
-          <div id="devicesList"></div>
+          <div id="devicesContent">
+            <div id="devicesList"></div>
+            <div id="deviceStar">
+              <div id="deviceEndpointContainer"></div>
+              <div id="deviceStarCenter">
+                <span class="material-symbols-outlined">
+                  dns
+                </span>
+                <p id="deviceStarCenterIp">192.168.1.1</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -43,6 +61,7 @@
   <script src="js/clicks.js"></script>
 
   <script src="js/builders/devices.js"></script>
+  <script src="js/builders/streams.js"></script>
 
   <script src="script.js"></script>
 </body>

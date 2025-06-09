@@ -1,3 +1,4 @@
+/* TABS */
 const selectTab = (name) => {
     $(".tabButton").removeClass("selected")
     $(`#${name}Button`).addClass("selected")
@@ -17,3 +18,7 @@ $("#streamsButton").on("click", () => {
 $("#devicesButton").on("click", () => {
     selectTab("devices")
 })
+
+
+/* DEVICES */
+

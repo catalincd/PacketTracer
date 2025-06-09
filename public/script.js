@@ -22,7 +22,8 @@ const resultsCallback = (response) => {
     $("#contentPage").show();
     $("#fileTitle").html(GLOBAL_DATA.file)
 
-    buildDevices(GLOBAL_DATA);
+    buildDevices();
+    buildStreams();
 }
 
 

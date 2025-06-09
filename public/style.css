@@ -8,10 +8,10 @@
     --black: #000103;
     --grey: #D7D0C8;
     --accent: #FF312E;
-    --darkgrey: #515052;
+    --darkgrey: #8B8C89;
     --white: #FFFFFA;
-  }
-  
+}
+
 
 html {
     font-family: "Inter", sans-serif;
@@ -97,10 +97,10 @@ body {
     text-align: center;
     padding: 0.75rem 0.5rem;
     border-radius: 0.35rem;
-    background-color: var(--grey);
+    background-color: var(--darkgrey);
 }
 
-#tabsContainer .tabButton:hover { 
+#tabsContainer .tabButton:hover {
     background-color: var(--white);
 }
 
@@ -114,10 +114,102 @@ body {
     display: none;
 }
 
-.tabContainer.selected{
+.tabContainer.selected {
     display: block;
 }
 
 #tabContent {
-    background-color: red;
+    /* background-color: red; */
+}
+
+#devicesTopBar {
+    /* height: 5rem; */
+}
+
+#devicesContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+#devicesList {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0.5rem;
+}
+
+#devicesList .deviceItem {
+    cursor: pointer;
+    background-color: var(--darkgrey);
+    border-radius: 0.35rem;
+    width: 12rem;
+    padding: 0.75rem 2rem;
+    text-align: center;
+}
+
+#devicesList .deviceItem.selected {
+    background-color: var(--white);
+    font-weight: 600;
+}
+
+#devicesContent #deviceStar {
+    position: relative;
+    width: 80vh;
+    height: 80vh;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+#deviceStarCenter {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-gap: 0rem;
+    justify-items: center;
+    align-content: center;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+#deviceEndpointContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.deviceStarEndpoint {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-gap: 0rem;
+    justify-items: center;
+    align-content: center;
+    position: absolute;
+    transform: translateX(calc(-50% - 0.15rem));
+}
+
+.Flip {
+    transform: translateX(calc(-50% - 0.15rem)) translateY(-1.5rem);
+}
+
+.deviceStarEndpointLine {
+    background-color: black;
+    width: 5rem;
+    height: 0.15rem;
+    border-radius: 0.25rem;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    transform-origin: center;
 }
