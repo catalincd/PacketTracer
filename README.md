@@ -20,7 +20,7 @@ Clone the repository and run the install script:
    ```
 
 ## Run the spell
-```bash
+   ```bash
    npm run start
    ```
 
